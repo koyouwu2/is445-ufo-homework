@@ -1,0 +1,50 @@
+---
+layout: null
+title: "IS 445 — UFO Sightings: Shapes and Timing"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IS 445 — UFO Sightings: Shapes and Timing</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; background: #f8fafc; color: #172333; font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { max-width: 920px; margin: 0 auto; padding: 46px 22px 78px; }
+    h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2; margin: 0 0 12px; }
+    h2 { margin-top: 38px; font-size: 1.35rem; }
+    a { color: #125a91; }
+    .subtitle { color: #52627b; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 30px; }
+    .links a { border: 1px solid #cbd5e1; border-radius: 7px; background: #fff; padding: 8px 14px; text-decoration: none; font-weight: 600; }
+    .chart { width: 100%; border: 1px solid #e2e8f0; background: white; border-radius: 8px; }
+    .note { margin-top: 30px; color: #506078; font-size: .92rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>UFO Sightings: Shapes and Timing</h1>
+  <p class="subtitle">IS 445 Data Visualization | Python, Altair, and Vega-Lite</p>
+  <p>This project uses the public UFO sightings dataset from the IS 445 dataset list. Both visualizations were created in Python using Altair and Vega-Lite, from a CSV loaded directly from its public URL.</p>
+  <nav class="links" aria-label="Project resources">
+    <a href="https://raw.githubusercontent.com/UIUC-iSchool-DataViz/is445_data/main/ufo-scrubbed-geocoded-time-standardized-00.csv">The Data</a>
+    <a href="https://github.com/koyouwu2/is445-ufo-homework/blob/main/python_notebooks/ufo_visualizations.ipynb">The Analysis</a>
+  </nav>
+
+  <section>
+    <h2>Visualization 1: Most Common Reported UFO Shapes</h2>
+    <iframe class="chart" src="{{ '/assets/plots/ufo_shapes.html' | relative_url }}" title="Horizontal bar chart of ten most-reported UFO shapes" height="455" loading="lazy"></iframe>
+    <p>My first visualization is a horizontal bar chart showing the ten most frequently reported UFO shapes. Shape is a <strong>nominal</strong> variable on the y-axis, and the number of reports is a <strong>quantitative</strong> variable on the x-axis. I use a sequential blue color scheme based on the number of reports: darker blue highlights higher counts. In the Python notebook, I cleaned the shape names, removed records missing a shape, grouped the data by shape, counted the reports, and selected the ten most common categories. This makes the rankings easier to compare than displaying every category.</p>
+  </section>
+
+  <section>
+    <h2>Visualization 2: When Were UFO Sightings Reported?</h2>
+    <iframe class="chart" src="{{ '/assets/plots/ufo_time_heatmap.html' | relative_url }}" title="Heatmap of UFO reports by month and hour with country dropdown" height="520" loading="lazy"></iframe>
+    <p>My second visualization is a heatmap showing how reported UFO sightings vary across months and hours of the day. Month is a <strong>nominal</strong> category displayed in calendar order, hour is an <strong>ordinal</strong> variable from 0 to 23, and report count is a <strong>quantitative</strong> variable represented by the intensity of a sequential blue color scale. In Python, I parsed the sighting dates, normalized <code>24:00</code> to <code>00:00</code>, excluded records without valid dates, extracted month and hour, and counted reports for each combination.</p>
+    <p><strong>Interactivity:</strong> A country dropdown lets visitors switch between all countries and selected individual countries, helping compare patterns without making the heatmap crowded. Hovering over a cell shows the region, month, hour, and count. This filtering is additional interactivity beyond ordinary panning and zooming.</p>
+  </section>
+  <p class="note">These charts summarize reported sightings in a historical dataset; they do not establish that the reported events were extraterrestrial. Counts are not adjusted for population or reporting differences.</p>
+</main>
+</body>
+</html>
